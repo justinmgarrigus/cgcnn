@@ -1,5 +1,3 @@
-#angela is making changes
-#TJ is also making changes
 import argparse
 import os
 import shutil
@@ -51,6 +49,8 @@ parser.add_argument('--print-freq', '-p', default=10, type=int,
                     metavar='N', help='print frequency (default: 10)')
 parser.add_argument('--resume', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
+parser.add_argument('--pretrain', default='', type=str, metavar='PATH', 
+                    help='path to pretrained model (default: none)') 
 train_group = parser.add_mutually_exclusive_group()
 train_group.add_argument('--train-ratio', default=None, type=float, metavar='N',
                     help='number of training data to be loaded (default none)')
@@ -141,7 +141,8 @@ def main():
                                 h_fea_len=args.h_fea_len,
                                 n_h=args.n_h,
                                 classification=True if args.task ==
-                                                       'classification' else False)
+                                                       'classification' else False) 
+
     if args.cuda:
         model.cuda()
     
@@ -176,23 +177,72 @@ def main():
         raise NameError('Only SGD or Adam is allowed as --optim')
 
     # optionally resume from a checkpoint
-    if args.resume:
-        if os.path.isfile(args.resume):
-            print("=> loading checkpoint '{}'".format(args.resume))
-            checkpoint = torch.load(args.resume)
-            args.start_epoch = checkpoint['epoch']
-            best_mae_error = checkpoint['best_mae_error']
+    if path := args.resume or args.pretrain: 
+        if os.path.isfile(path):
+            print("=> loading checkpoint '{}'".format(path))
+            checkpoint = torch.load(path, map_location=torch.device('cpu'))
+
+            # Before we load a checkpoint, we should make sure its parameters 
+            # are the same as the model parameters we created above. 
+            model_args = argparse.Namespace(**checkpoint['args'])
+            def assert_same_params(arg): 
+                model_arg = vars(model_args)[arg] 
+                this_arg = vars(args)[arg]
+                if model_arg != this_arg: 
+                    print(f'Error: the model argument {arg} loaded from the ' \
+                          f'checkpoint has a value of {model_arg} when the ' \
+                          f'command arguments say it should have a value of ' \
+                          f'{this_arg}. This means the checkpoint model and ' \
+                           'model we are constructing in this program have ' \
+                           'different sizes, which is not allowed.') 
+                    sys.exit(1) 
+            
+            assert_same_params('atom_fea_len')
+            assert_same_params('n_conv')
+            assert_same_params('h_fea_len')
+            assert_same_params('n_h') 
+
             model.load_state_dict(checkpoint['state_dict'])
             optimizer.load_state_dict(checkpoint['optimizer'])
             normalizer.load_state_dict(checkpoint['normalizer'])
+
+            if args.resume: 
+                args.start_epoch = checkpoint['epoch']
+                best_mae_error = checkpoint['best_mae_error']
+            else: 
+                for param in model.parameters(): 
+                    param.requires_grad = True
+                for param in model.embedding.parameters(): 
+                    param.requires_grad = False 
+
             print("=> loaded checkpoint '{}' (epoch {})"
-                  .format(args.resume, checkpoint['epoch']))
+                  .format(path, checkpoint['epoch']))
+            param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
+            print("Sum of each parameter:", param_sum)
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
 
     scheduler = MultiStepLR(optimizer, milestones=args.lr_milestones,
                             gamma=0.1)
+    
+    if args.start_epoch > args.epochs: 
+        print(f'Error: the checkpoint epochs ({checkpoint["epoch"]}) '\
+              f'exceeds the parameter number of epochs ' \
+              f'({args.epochs}), which is not allowed.')
+        sys.exit(1) 
 
+    # Always save the model for the very beginning. This just organizes things
+    # in case the user trains with an epoch size of 0 (which is equivalent to
+    # not training at all; in other words, just running the test-set). 
+    save_checkpoint({
+        'epoch': 0,
+        'state_dict': model.state_dict(),
+        'best_mae_error': best_mae_error,
+        'optimizer': optimizer.state_dict(),
+        'normalizer': normalizer.state_dict(),
+        'args': vars(args)
+    }, True)
+    
     for epoch in range(args.start_epoch, args.epochs):
         # train for one epoch
         train(train_loader, model, criterion, optimizer, epoch, normalizer)
@@ -220,16 +270,21 @@ def main():
             'optimizer': optimizer.state_dict(),
             'normalizer': normalizer.state_dict(),
             'args': vars(args)
-        }, is_best)
+        }, is_best) 
 
     # test best model
     print('---------Evaluate Model on Test Set---------------')
     best_checkpoint = torch.load('model_best.pth.tar')
     model.load_state_dict(best_checkpoint['state_dict'])
     validate(test_loader, model, criterion, normalizer, test=True)
+    param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
+    print("Sum of each parameter:", param_sum)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, normalizer):
+    param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
+    print("Sum of each parameter:", param_sum) 
+
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()

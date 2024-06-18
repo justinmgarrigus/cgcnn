@@ -307,6 +307,7 @@ class CIFData(Dataset):
         with open(id_prop_file) as f:
             reader = csv.reader(f)
             self.id_prop_data = [row for row in reader]
+        torch.manual_seed(random_seed) 
         random.seed(random_seed)
         random.shuffle(self.id_prop_data)
         atom_init_file = os.path.join(self.root_dir, 'atom_init.json')
