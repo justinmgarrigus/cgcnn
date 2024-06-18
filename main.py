@@ -108,7 +108,7 @@ else:
 def main():
     random.seed(args.seed)
     np.random.seed(args.seed)
-    torch.manual_seed(42)
+    torch.manual_seed(args.seed)
     
     global args, best_mae_error
 
