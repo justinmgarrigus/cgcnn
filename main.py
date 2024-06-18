@@ -79,6 +79,11 @@ parser.add_argument('--n-conv', default=3, type=int, metavar='N',
                     help='number of conv layers')
 parser.add_argument('--n-h', default=1, type=int, metavar='N',
                     help='number of hidden layers after pooling')
+parser.add_argument('--freeze-embedding', action='store_true', help='Freeze the embedding layer')
+parser.add_argument('--freeze-conv', action='store_true', help='Freeze the convolutional layer')
+parser.add_argument('--freeze-fc', type=int, default=0, help='Number of fully-connected layers frozen')
+parser.add_argument('--fine-tune', action='store_true', help='Perform additional fine-tuning after initial transfer learning')
+parser.add_argument('--start-fine-tuning-epoch', type=int, default=30, help='Epoch to start fine-tuning')
 
 args = parser.parse_args(sys.argv[1:])
 
@@ -94,6 +99,7 @@ def main():
     global args, best_mae_error
 
     # load data
+    root_dir = args.data_options
     dataset = CIFData(*args.data_options)
     collate_fn = collate_pool
     train_loader, val_loader, test_loader = get_train_val_test_loader(
@@ -138,6 +144,21 @@ def main():
                                                        'classification' else False)
     if args.cuda:
         model.cuda()
+    
+    # Freeze layers based on arguments
+    if args.freeze_embedding:
+        for param in model.embedding.parameters():
+            param.requires_grad = False
+
+    if args.freeze_conv:
+        for conv_layer in model.convs:
+            for param in conv_layer.parameters():
+                param.requires_grad = False
+
+    if args.freeze_fc > 0 and hasattr(model, 'fcs'):
+        for i in range(args.freeze_fc):
+            for param in model.fcs[i].parameters():
+                param.requires_grad = False
 
     # define loss func and optimizer
     if args.task == 'classification':
@@ -271,6 +292,12 @@ def train(train_loader, model, criterion, optimizer, epoch, normalizer):
         # compute gradient and do SGD step
         optimizer.zero_grad()
         loss.backward()
+	
+	# Unfreeze layers during fine-tuning if specified
+        if args.fine_tune and epoch >= args.start_fine_tuning_epoch:
+            for param in model.parameters():
+                param.requires_grad = True
+
         optimizer.step()
 
         # measure elapsed time
