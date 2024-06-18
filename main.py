@@ -190,24 +190,38 @@ def main():
                 best_mae_error = checkpoint['best_mae_error']
             else: 
                 for param in model.parameters(): 
-                    param.requires_grad = True 
+                    param.requires_grad = True
                 for param in model.embedding.parameters(): 
                     param.requires_grad = False 
 
             print("=> loaded checkpoint '{}' (epoch {})"
                   .format(path, checkpoint['epoch']))
+            param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
+            print("Sum of each parameter:", param_sum)
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
 
     scheduler = MultiStepLR(optimizer, milestones=args.lr_milestones,
                             gamma=0.1)
     
-    if args.start_epoch >= args.epochs: 
+    if args.start_epoch > args.epochs: 
         print(f'Error: the checkpoint epochs ({checkpoint["epoch"]}) '\
               f'exceeds the parameter number of epochs ' \
               f'({args.epochs}), which is not allowed.')
         sys.exit(1) 
 
+    # Always save the model for the very beginning. This just organizes things
+    # in case the user trains with an epoch size of 0 (which is equivalent to
+    # not training at all; in other words, just running the test-set). 
+    save_checkpoint({
+        'epoch': 0,
+        'state_dict': model.state_dict(),
+        'best_mae_error': best_mae_error,
+        'optimizer': optimizer.state_dict(),
+        'normalizer': normalizer.state_dict(),
+        'args': vars(args)
+    }, True)
+    
     for epoch in range(args.start_epoch, args.epochs):
         # train for one epoch
         train(train_loader, model, criterion, optimizer, epoch, normalizer)
@@ -235,16 +249,21 @@ def main():
             'optimizer': optimizer.state_dict(),
             'normalizer': normalizer.state_dict(),
             'args': vars(args)
-        }, is_best)
+        }, is_best) 
 
     # test best model
     print('---------Evaluate Model on Test Set---------------')
     best_checkpoint = torch.load('model_best.pth.tar')
     model.load_state_dict(best_checkpoint['state_dict'])
     validate(test_loader, model, criterion, normalizer, test=True)
+    param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
+    print("Sum of each parameter:", param_sum)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, normalizer):
+    param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
+    print("Sum of each parameter:", param_sum) 
+
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
