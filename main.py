@@ -5,12 +5,9 @@ import sys
 import time
 import warnings
 import random
-random.seed(42)
 
 import numpy as np
-np.random.seed(42)
 import torch
-torch.manual_seed(42)
 import torch.nn as nn
 import torch.optim as optim
 from sklearn import metrics
@@ -95,6 +92,8 @@ parser.add_argument('--cross-param', default = None, type = int, metavar = 'N',
                     help = 'a parameter for certain types of cross validation')
 parser.add_argument('--counter', default = 0, type = int, metavar = 'N',
                     help = 'the particular iteration of the cross validation method')
+parser.add_argument('--seed', default = 0, type = int, metavar = 'N',
+                    help = 'seeding to control for randomization')
 
 args = parser.parse_args(sys.argv[1:])
 
@@ -107,6 +106,10 @@ else:
 
 
 def main():
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(42)
+    
     global args, best_mae_error
 
     # load data
