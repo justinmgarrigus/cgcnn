@@ -93,3 +93,11 @@ Local
 
 # .DS_Store
 .DS_Store
+
+# PyTorch model checkpoints
+*.pth
+*.pth.tar
+
+# Other stuff this project generates automatically 
+test_results.csv
+*.out 
