@@ -231,11 +231,6 @@ def main():
             if args.resume: 
                 args.start_epoch = checkpoint['epoch']
                 best_mae_error = checkpoint['best_mae_error']
-            else: 
-                for param in model.parameters(): 
-                    param.requires_grad = True
-                for param in model.embedding.parameters(): 
-                    param.requires_grad = False 
 
             print("=> loaded checkpoint '{}' (epoch {})"
                   .format(path, checkpoint['epoch']))

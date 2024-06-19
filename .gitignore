@@ -99,4 +99,5 @@ Local
 *.pth.tar
 
 # Other stuff this project generates automatically 
-test_results.csv 
+test_results.csv
+*.out 
