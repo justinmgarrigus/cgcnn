@@ -35,7 +35,7 @@ for i in range(100):
 # PART 2: each model with a single cross validation type (k-fold)
 
 # file for pretraining
-fileName = "pre-trained/band-gap.pth.tar"
+fileName = "pre-trained/formation-energy-per-atom.pth.tar"
 
 # transfer learning
 for i in range(10): 
