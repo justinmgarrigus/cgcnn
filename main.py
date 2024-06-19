@@ -106,11 +106,12 @@ else:
 
 
 def main():
+    
+    global args, best_mae_error
+
     random.seed(args.seed)
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
-    
-    global args, best_mae_error
 
     # load data
     root_dir = args.data_options
