@@ -1,0 +1,124 @@
+=> loading checkpoint 'pre-trained/formation-energy-per-atom.pth.tar'
+=> loaded checkpoint 'pre-trained/formation-energy-per-atom.pth.tar' (epoch 968)
+Sum of each parameter: 287.4787292480469
+Sum of each parameter: 287.4787292480469
+Epoch: [0][0/3]	Time 49.082 (49.082)	Data 45.027 (45.027)	Loss 53.3775 (53.3775)	MAE 7.436 (7.436)
+Test: [0/1]	Time 7.590 (7.590)	Loss 39.6246 (39.6246)	MAE 6.360 (6.360)
+ * MAE 6.360
+Sum of each parameter: 281.41363525390625
+Epoch: [1][0/3]	Time 3.023 (3.023)	Data 1.140 (1.140)	Loss 37.7536 (37.7536)	MAE 6.210 (6.210)
+Test: [0/1]	Time 0.680 (0.680)	Loss 6.7918 (6.7918)	MAE 2.224 (2.224)
+ * MAE 2.224
+Sum of each parameter: 281.6217346191406
+Epoch: [2][0/3]	Time 2.533 (2.533)	Data 0.096 (0.096)	Loss 7.6079 (7.6079)	MAE 2.359 (2.359)
+Test: [0/1]	Time 0.561 (0.561)	Loss 7.3000 (7.3000)	MAE 2.470 (2.470)
+ * MAE 2.470
+Sum of each parameter: 271.8075256347656
+Epoch: [3][0/3]	Time 2.190 (2.190)	Data 0.080 (0.080)	Loss 6.6415 (6.6415)	MAE 2.309 (2.309)
+Test: [0/1]	Time 0.844 (0.844)	Loss 5.2811 (5.2811)	MAE 2.071 (2.071)
+ * MAE 2.071
+Sum of each parameter: 264.21502685546875
+Epoch: [4][0/3]	Time 2.617 (2.617)	Data 0.094 (0.094)	Loss 5.1208 (5.1208)	MAE 1.986 (1.986)
+Test: [0/1]	Time 1.120 (1.120)	Loss 5.0031 (5.0031)	MAE 1.836 (1.836)
+ * MAE 1.836
+Sum of each parameter: 258.6963806152344
+Epoch: [5][0/3]	Time 3.517 (3.517)	Data 0.521 (0.521)	Loss 4.8038 (4.8038)	MAE 1.872 (1.872)
+Test: [0/1]	Time 0.727 (0.727)	Loss 8.8257 (8.8257)	MAE 2.769 (2.769)
+ * MAE 2.769
+Sum of each parameter: 248.51083374023438
+Epoch: [6][0/3]	Time 2.345 (2.345)	Data 0.137 (0.137)	Loss 9.1140 (9.1140)	MAE 2.784 (2.784)
+Test: [0/1]	Time 0.778 (0.778)	Loss 3.9395 (3.9395)	MAE 1.592 (1.592)
+ * MAE 1.592
+Sum of each parameter: 249.2889862060547
+Epoch: [7][0/3]	Time 1.900 (1.900)	Data 0.037 (0.037)	Loss 3.3091 (3.3091)	MAE 1.527 (1.527)
+Test: [0/1]	Time 0.767 (0.767)	Loss 1.9579 (1.9579)	MAE 1.274 (1.274)
+ * MAE 1.274
+Sum of each parameter: 244.5882568359375
+Epoch: [8][0/3]	Time 2.140 (2.140)	Data 0.101 (0.101)	Loss 2.0468 (2.0468)	MAE 1.239 (1.239)
+Test: [0/1]	Time 0.845 (0.845)	Loss 2.3479 (2.3479)	MAE 1.410 (1.410)
+ * MAE 1.410
+Sum of each parameter: 241.57350158691406
+Epoch: [9][0/3]	Time 2.007 (2.007)	Data 0.060 (0.060)	Loss 2.7916 (2.7916)	MAE 1.494 (1.494)
+Test: [0/1]	Time 1.526 (1.526)	Loss 3.2413 (3.2413)	MAE 1.553 (1.553)
+ * MAE 1.553
+Sum of each parameter: 242.65310668945312
+Epoch: [10][0/3]	Time 3.966 (3.966)	Data 1.932 (1.932)	Loss 3.0498 (3.0498)	MAE 1.553 (1.553)
+Test: [0/1]	Time 1.750 (1.750)	Loss 1.5579 (1.5579)	MAE 1.147 (1.147)
+ * MAE 1.147
+Sum of each parameter: 238.93212890625
+Epoch: [11][0/3]	Time 5.746 (5.746)	Data 0.102 (0.102)	Loss 2.0049 (2.0049)	MAE 1.256 (1.256)
+Test: [0/1]	Time 1.306 (1.306)	Loss 0.9332 (0.9332)	MAE 0.805 (0.805)
+ * MAE 0.805
+Sum of each parameter: 239.15261840820312
+Epoch: [12][0/3]	Time 2.891 (2.891)	Data 0.082 (0.082)	Loss 1.0374 (1.0374)	MAE 0.846 (0.846)
+Test: [0/1]	Time 0.786 (0.786)	Loss 1.0413 (1.0413)	MAE 0.820 (0.820)
+ * MAE 0.820
+Sum of each parameter: 238.76820373535156
+Epoch: [13][0/3]	Time 2.612 (2.612)	Data 0.155 (0.155)	Loss 1.1800 (1.1800)	MAE 0.872 (0.872)
+Test: [0/1]	Time 1.109 (1.109)	Loss 0.9887 (0.9887)	MAE 0.886 (0.886)
+ * MAE 0.886
+Sum of each parameter: 237.18740844726562
+Epoch: [14][0/3]	Time 3.186 (3.186)	Data 0.100 (0.100)	Loss 1.2342 (1.2342)	MAE 0.955 (0.955)
+Test: [0/1]	Time 0.951 (0.951)	Loss 1.1098 (1.1098)	MAE 0.859 (0.859)
+ * MAE 0.859
+Sum of each parameter: 238.09030151367188
+Epoch: [15][0/3]	Time 2.642 (2.642)	Data 0.108 (0.108)	Loss 1.0789 (1.0789)	MAE 0.834 (0.834)
+Test: [0/1]	Time 0.992 (0.992)	Loss 0.6936 (0.6936)	MAE 0.694 (0.694)
+ * MAE 0.694
+Sum of each parameter: 237.0607452392578
+Epoch: [16][0/3]	Time 3.197 (3.197)	Data 0.136 (0.136)	Loss 0.8238 (0.8238)	MAE 0.757 (0.757)
+Test: [0/1]	Time 0.829 (0.829)	Loss 0.6539 (0.6539)	MAE 0.661 (0.661)
+ * MAE 0.661
+Sum of each parameter: 236.97308349609375
+Epoch: [17][0/3]	Time 2.581 (2.581)	Data 0.083 (0.083)	Loss 0.8495 (0.8495)	MAE 0.757 (0.757)
+Test: [0/1]	Time 1.011 (1.011)	Loss 0.8227 (0.8227)	MAE 0.718 (0.718)
+ * MAE 0.718
+Sum of each parameter: 237.3378143310547
+Epoch: [18][0/3]	Time 2.901 (2.901)	Data 0.114 (0.114)	Loss 0.8432 (0.8432)	MAE 0.734 (0.734)
+Test: [0/1]	Time 1.553 (1.553)	Loss 0.6329 (0.6329)	MAE 0.666 (0.666)
+ * MAE 0.666
+Sum of each parameter: 236.6071319580078
+Epoch: [19][0/3]	Time 2.739 (2.739)	Data 0.141 (0.141)	Loss 0.8967 (0.8967)	MAE 0.785 (0.785)
+Test: [0/1]	Time 1.180 (1.180)	Loss 0.6216 (0.6216)	MAE 0.610 (0.610)
+ * MAE 0.610
+Sum of each parameter: 236.83529663085938
+Epoch: [20][0/3]	Time 2.532 (2.532)	Data 0.119 (0.119)	Loss 0.8341 (0.8341)	MAE 0.743 (0.743)
+Test: [0/1]	Time 1.137 (1.137)	Loss 0.5828 (0.5828)	MAE 0.600 (0.600)
+ * MAE 0.600
+Sum of each parameter: 236.61465454101562
+Epoch: [21][0/3]	Time 2.649 (2.649)	Data 0.097 (0.097)	Loss 0.6489 (0.6489)	MAE 0.653 (0.653)
+Test: [0/1]	Time 1.432 (1.432)	Loss 0.5734 (0.5734)	MAE 0.590 (0.590)
+ * MAE 0.590
+Sum of each parameter: 236.5030975341797
+Epoch: [22][0/3]	Time 3.534 (3.534)	Data 0.312 (0.312)	Loss 0.9129 (0.9129)	MAE 0.789 (0.789)
+Test: [0/1]	Time 1.353 (1.353)	Loss 0.5501 (0.5501)	MAE 0.588 (0.588)
+ * MAE 0.588
+Sum of each parameter: 236.26866149902344
+Epoch: [23][0/3]	Time 2.860 (2.860)	Data 0.183 (0.183)	Loss 0.6928 (0.6928)	MAE 0.685 (0.685)
+Test: [0/1]	Time 1.236 (1.236)	Loss 0.5739 (0.5739)	MAE 0.577 (0.577)
+ * MAE 0.577
+Sum of each parameter: 236.27252197265625
+Epoch: [24][0/3]	Time 2.521 (2.521)	Data 0.116 (0.116)	Loss 0.8420 (0.8420)	MAE 0.739 (0.739)
+Test: [0/1]	Time 1.031 (1.031)	Loss 0.5277 (0.5277)	MAE 0.579 (0.579)
+ * MAE 0.579
+Sum of each parameter: 235.89442443847656
+Epoch: [25][0/3]	Time 2.438 (2.438)	Data 0.133 (0.133)	Loss 0.6986 (0.6986)	MAE 0.689 (0.689)
+Test: [0/1]	Time 0.980 (0.980)	Loss 0.5308 (0.5308)	MAE 0.557 (0.557)
+ * MAE 0.557
+Sum of each parameter: 235.86036682128906
+Epoch: [26][0/3]	Time 3.022 (3.022)	Data 0.114 (0.114)	Loss 0.6779 (0.6779)	MAE 0.679 (0.679)
+Test: [0/1]	Time 1.267 (1.267)	Loss 0.5263 (0.5263)	MAE 0.551 (0.551)
+ * MAE 0.551
+Sum of each parameter: 235.69744873046875
+Epoch: [27][0/3]	Time 2.979 (2.979)	Data 0.133 (0.133)	Loss 0.6376 (0.6376)	MAE 0.653 (0.653)
+Test: [0/1]	Time 1.790 (1.790)	Loss 0.5017 (0.5017)	MAE 0.563 (0.563)
+ * MAE 0.563
+Sum of each parameter: 235.32427978515625
+Epoch: [28][0/3]	Time 4.228 (4.228)	Data 0.160 (0.160)	Loss 0.6643 (0.6643)	MAE 0.682 (0.682)
+Test: [0/1]	Time 1.534 (1.534)	Loss 0.5395 (0.5395)	MAE 0.553 (0.553)
+ * MAE 0.553
+Sum of each parameter: 235.42391967773438
+Epoch: [29][0/3]	Time 3.810 (3.810)	Data 0.199 (0.199)	Loss 0.6120 (0.6120)	MAE 0.640 (0.640)
+Test: [0/1]	Time 1.507 (1.507)	Loss 0.4809 (0.4809)	MAE 0.542 (0.542)
+ * MAE 0.542
+NO TEST

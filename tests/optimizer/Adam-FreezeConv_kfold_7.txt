@@ -1,0 +1,1 @@
+=> loading checkpoint 'pre-trained/formation-energy-per-atom.pth.tar'

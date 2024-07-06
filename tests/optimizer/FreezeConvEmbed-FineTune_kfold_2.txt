@@ -1,0 +1,4 @@
+=> loading checkpoint 'pre-trained/formation-energy-per-atom.pth.tar'
+=> loaded checkpoint 'pre-trained/formation-energy-per-atom.pth.tar' (epoch 968)
+Sum of each parameter: 287.4787292480469
+Sum of each parameter: 287.4787292480469
