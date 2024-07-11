@@ -234,8 +234,6 @@ def main():
 
             print("=> loaded checkpoint '{}' (epoch {})"
                   .format(path, checkpoint['epoch']))
-            param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
-            print("Sum of each parameter:", param_sum)
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
 
@@ -295,17 +293,12 @@ def main():
         best_checkpoint = torch.load('model_best.pth.tar')
         model.load_state_dict(best_checkpoint['state_dict'])
         validate(test_loader, model, criterion, normalizer, test=True)
-        param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
-        print("Sum of each parameter:", param_sum)
     else:
         print('NO TEST')
 
 
 
 def train(train_loader, model, criterion, optimizer, epoch, normalizer):
-    param_sum = sum(torch.sum(tensor) for tensor in model.parameters()).item() 
-    print("Sum of each parameter:", param_sum) 
-
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
