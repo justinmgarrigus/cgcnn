@@ -6,7 +6,7 @@ import shlex
 fileName = "pre-trained/formation-energy-per-atom.pth.tar"
 
 # varying training size from 1 to 600, stored in the "trainsize folder" 
-for b in range(6):
+for b in range(1, 8):
     trainsize = b * 100
     for i in range(10): 
         f = open("tests/trainsize/" + str(trainsize) + "/FromScratch_kfold_" + str(i) + ".txt", "w")
