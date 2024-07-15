@@ -44,19 +44,18 @@ if args.type == 'random':
         r12 = random.random()*len(nh)
         r13 = random.random()*len(pretrain)
 
-        f = open("optimizing_run.txt", "w")
+        #f = open("optimizing_run.txt", "w")
         stringstring = "python3 main.py --epochs " + str(epochs[r1]) + " --batch-size " + str(batchsize[r2]) + " --learning-rate " + str(learningrate[r3]) + " --lr-milestones " + str(lrmilestone[r4]) + " --momentum " + str(momentum[r5]) + " --weight-decay " + str(weightdecay[r6]) + " --train-size " + str(trainsize[r7]) + "--optim " + str(optimizer[r8]) + " --athom-fea-len " + str(atomfealen[r9]) + " --h-fea-len " + str(hfealen[r10]) + " --n-conv " + str(nconv[r11]) + " --n-h " + str(nh[r12]) + " --freeze-fc 0 --test-ratio 0.2 --seed 42 root_dir"
-        subprocess.run(shlex.split(stringstring), stdout = f)
-        f.close()
+        f = subprocess.run(shlex.split(stringstring), encoding = 'utf-8', stdout = subprocess.PIPE)
         losses = []
-        with open('optimizing_run.txt') as file:
-            for line in file:
-                if 'Loss' in line:
-                    afterloss = line.split('Loss')[1]
-                    loss = float(afterloss.split()[0].strip())
-                    losses.append(loss)
+        #with open('optimizing_run.txt', 'r') as file:
+        for line in f.stdout.split('\n'):
+            if 'Loss' in line:
+                afterloss = line.split('Loss')[1]
+                loss = float(afterloss.split()[0].strip())
+                losses.append(loss)
         if losses[len(losses)-1] < low:
-            f = open("optimized_python_command.txt", "w")
-            f.write(stringstring + "\n" + losses[len(losses)-1])
-            f.close()
+            g = open("optimized_python_command.txt", "w")
+            g.write(stringstring + "\n" + losses[len(losses)-1])
+            g.close()
             
