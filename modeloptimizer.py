@@ -57,6 +57,6 @@ if args.type == 'random':
                     losses.append(loss)
         if losses[len(losses)-1] < low:
             f = open("optimized_python_command.txt", "w")
-            f.write(stringstring + "\n" + loss)
+            f.write(stringstring + "\n" + losses[len(losses)-1])
             f.close()
             
