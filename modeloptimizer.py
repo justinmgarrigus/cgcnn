@@ -53,7 +53,7 @@ if args.type == 'random':
             for line in file:
                 if 'Loss' in line:
                     afterloss = line.split('Loss')[1]
-                    loss = float(afterloss.split()[1].strip())
+                    loss = float(afterloss.split()[0].strip())
                     losses.append(loss)
         if losses[len(losses)-1] < low:
             f = open("optimized_python_command.txt", "w")
