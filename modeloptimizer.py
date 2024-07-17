@@ -61,7 +61,7 @@ if args.type == 'random':
             g = open("optimized_python_command.txt", "w")
             g.write(stringstring + "\n" + str(losses[len(losses)-1]))
             g.close()
-            low = losses[len(losses-1)]
+            low = losses[len(losses)-1]
         print('ITERATION ' + str(x) + ' DONE')
 
 def momentumchoice(currmomentum):
